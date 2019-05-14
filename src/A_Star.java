@@ -1,6 +1,7 @@
 import java.util.AbstractCollection;
 import java.util.PriorityQueue;
 
+//A_star radi samo za konzistentne heuristike, nije ko na slajdovima, te nije testiran
 public class A_Star extends GraphSearchAlgorithm{
     @Override
     AbstractCollection<Node> initOpen() {

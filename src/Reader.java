@@ -33,8 +33,11 @@ class Reader {
         succ.put(A, succA);
         succ.put(B, succB);
         succ.put(C, succC);
-        Problem zad1 = new SearchProblem(succ, A, E);
+        Problem zad1 = new SearchProblem(succ, A, I);
         problems[0] = zad1;
+
+        //kod inicijalizacije za problem A_star treba za nodeove pozvati konstruktor sa taman izracunatom heuristikom
+        //ne implementiram heuristicke algoritme jer jedino o nodeovima znam prijelaze.
 
         return problems;
     }

@@ -8,7 +8,7 @@ public class Main {
         GraphSearchAlgorithm dfs = new DFS();
 
         try {
-            List<Node> path = dfs.run((SearchProblem) problems[0]);
+            List<Node> path = bfs.run((SearchProblem) problems[0]);
             System.out.println("put do cvora je: ");
             for(Node n : path){
                 System.out.println(n);

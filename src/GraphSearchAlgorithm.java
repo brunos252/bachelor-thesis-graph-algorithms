@@ -11,21 +11,27 @@ abstract class GraphSearchAlgorithm {
         while(! open.isEmpty()){
             node = nextNode(open);
             System.out.println("posjecujem: " + node);
+            if(closed.contains(node.toString())){
+                continue;
+            }
+
+            closed.add(node.toString());
+
             if(problem.isGoalState(node)){
                 return node.path();
             }
-            if(!closed.contains(node)){
-                //toString samo ako je closed List<String>!!
-                closed.add(node.toString());
-                Map<Node, Double> succ = problem.successors(node);
-                if(succ != null) {
-                    for (Node m : succ.keySet()) {
-                        //if(m.getCost() == null || m.getCost() > node.getCost() + succ.get(m)){
-                        m.setCost(node.getCost() + succ.get(m));
-                        open.add(m);
-                    }
+            //toString samo ako je closed List<String>!!
+            Map<Node, Double> succ = problem.successors(node);
+            if(succ != null) {
+                for (Node m : succ.keySet()) {
+                    //if(m.getCost() == null || m.getCost() > node.getCost() + succ.get(m)){
+                    //ovo je u python kodu za a_star ali izgleda nepotrebno:
+                    //if(!closed.contains(m.toString())){
+                    m.setCost(node.getCost() + succ.get(m));
+                    open.add(m);
                 }
             }
+
         }
         return null;
     }
@@ -33,5 +39,4 @@ abstract class GraphSearchAlgorithm {
     abstract AbstractCollection<Node> initOpen();
 
     abstract Node nextNode(AbstractCollection open) throws Exception;
-
 }
