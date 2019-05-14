@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.List;
 
-class Node {
+class Node implements Comparable{
 
     private String name;
     private Node parent;
@@ -52,5 +52,20 @@ class Node {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if(o instanceof Node){
+            if(this.cost < ((Node) o).cost){
+                return -1;
+            } else if(this.cost > ((Node) o).cost){
+                return 1;
+            } else{
+                return 0;
+            }
+        } else{
+            throw new ClassCastException("");
+        }
     }
 }

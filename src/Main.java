@@ -13,6 +13,7 @@ public class Main {
             for(Node n : path){
                 System.out.println(n);
             }
+            //System.out.println(path.get(path.size() - 1).getCost());
         } catch(Exception e){
             System.out.println("jebaja" + e);
         }

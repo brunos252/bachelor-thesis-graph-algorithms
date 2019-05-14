@@ -6,7 +6,8 @@ abstract class GraphSearchAlgorithm {
         Node node = problem.startState();
         AbstractCollection<Node> open = initOpen();
         open.add(node);
-        Set<Node> closed = new HashSet<>();
+        //Set<Node> closed = new HashSet<>();
+        List<String> closed = new LinkedList<>();
         while(! open.isEmpty()){
             node = nextNode(open);
             System.out.println("posjecujem: " + node);
@@ -14,7 +15,8 @@ abstract class GraphSearchAlgorithm {
                 return node.path();
             }
             if(!closed.contains(node)){
-                closed.add(node);
+                //toString samo ako je closed List<String>!!
+                closed.add(node.toString());
                 Map<Node, Double> succ = problem.successors(node);
                 if(succ != null) {
                     for (Node m : succ.keySet()) {
