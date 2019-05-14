@@ -5,28 +5,28 @@ class Node {
 
     private String name;
     private Node parent;
-    private boolean isRootNode;
     private Double cost;
 
-    public Node(String name, Node parent, boolean isRootNode){
+    public Node(String name, Node parent){
         this.name = name;
         this.parent = parent;
-        this.isRootNode = isRootNode;
+        if(parent == null)
+            cost = 0.;
     }
 
     List<Node> path() {
         List<Node> list;
-        if(isRootNode) {
+        if(parent == null) {
             list = new LinkedList<>();
         } else {
             list = parent.path();
         }
-        list.add(0, this);
+        list.add(this);
         return list;
     }
 
     public boolean isRootNode() {
-        return isRootNode;
+        return parent == null;
     }
 
     public Node getParent() {
@@ -37,8 +37,12 @@ class Node {
         return name;
     }
 
-    public void setCost(Double cost){
-        this.cost = cost;
+    public boolean setCost(Double cost){
+        if(this.cost == null || this.cost > cost) {
+            this.cost = cost;
+            return true;
+        } else
+            return false;
     }
 
     public Double getCost(){
