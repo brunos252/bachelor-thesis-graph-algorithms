@@ -1,11 +1,10 @@
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 class Reader {
-    static Problem[] getProblems(){
-        Problem[] problems = new Problem[5];
+    static GraphProblem[] getProblems(){
+        GraphProblem[] problems = new GraphProblem[5];
 
         //!!!!pospremaj svako stanje jednom u memoriju za svaki par stanje-roditelj, da se moze koristiti path()
         //da vrati put do stanja
@@ -33,8 +32,11 @@ class Reader {
         succ.put(A, succA);
         succ.put(B, succB);
         succ.put(C, succC);
-        Problem zad1 = new SearchProblem(succ, A, I);
+        GraphProblem zad1 = new SearchProblem(succ, A, G);
         problems[0] = zad1;
+
+        GraphProblem zad1_ts = new GraphProblem(succ);
+        problems[1] = zad1_ts;
 
         //kod inicijalizacije za problem A_star treba za nodeove pozvati konstruktor sa taman izracunatom heuristikom
         //ne implementiram heuristicke algoritme jer jedino o nodeovima znam prijelaze.
