@@ -5,20 +5,28 @@ class Node implements Comparable{
 
     private String name;
     private Node parent;
+    private boolean isRootNode;
     private Double cost;
     private Double heuristic = 0.;
+    private Mark mark;
 
-    //konstruktor za algoritme bez heuristika
-    public Node(String name, Node parent){
+    //konstruktor za algoritme bez heuristika i osnovni konstruktor koji svi pozivaju
+    public Node(String name, boolean isRootNode){
         this.name = name;
-        this.parent = parent;
-        if(parent == null)
+        this.isRootNode = isRootNode;
+        if(isRootNode)
             cost = 0.;
+        mark = Mark.NONE;
+    }
+
+    //ako nije root node ne treba se navesti
+    public Node(String name){
+        this(name, false);
     }
 
     //konstruktor za A_star
-    public Node(String name, Node parent, Double heuristic){
-        this(name, parent);
+    public Node(String name, boolean isRootNode, Double heuristic){
+        this(name, isRootNode);
         this.heuristic = heuristic;
     }
 
@@ -34,7 +42,11 @@ class Node implements Comparable{
     }
 
     public boolean isRootNode() {
-        return parent == null;
+        return isRootNode;
+    }
+
+    public void setParent(Node parent){
+        this.parent = parent;
     }
 
     public Node getParent() {
@@ -62,6 +74,14 @@ class Node implements Comparable{
 
     public Double getHeuristic(){
         return heuristic;
+    }
+
+    public void setMark(Mark mark){
+        this.mark = mark;
+    }
+
+    public Mark getMark(){
+        return mark;
     }
 
     @Override
